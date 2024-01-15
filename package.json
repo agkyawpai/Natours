@@ -1,0 +1,22 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "node, express, mongo sample project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agkyawpai/Natours.git"
+  },
+  "author": "Aung Kyaw Paing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agkyawpai/Natours/issues"
+  },
+  "homepage": "https://github.com/agkyawpai/Natours#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
