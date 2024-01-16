@@ -53,6 +53,19 @@ app.patch('/api/v1/tours/:id', (req, res) => {
     });
 });
 
+app.delete('/api/v1/tours/:id', (req, res) => {
+    if (req.params.id > tours.length) {
+        return res.status(404).json({
+            status: 'fail',
+            message: null
+        });
+    }
+    res.status(204).json({
+        status: 'success',
+        data: null
+    });
+});
+
 app.post('/api/v1/tours', (req, res) => {
     // console.log(req.body);
     const newId = tours[tours.length - 1].id + 1;
