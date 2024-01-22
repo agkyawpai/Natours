@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+
+// Putting on top of the code to excecute before any other codes.
+process.on('uncaughtException', err => {
+  console.log('Uncaught Rejection. Shutting down...');
+  console.log(err.name, err.message);
+    process.exit(1);
+});
+
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
