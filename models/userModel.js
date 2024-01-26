@@ -33,7 +33,12 @@ const userSchema = new mongoose.Schema({
         requierd: [true, 'Please confirm your password']
     },
     passwordResetToken: String,
-    passwordResetExpires: Date
+    passwordResetExpires: Date,
+    active: {
+        type: Boolean,
+        default: true,
+        select: false
+    }
 }, {
     toJSON: {
         virtuals: true
@@ -41,6 +46,11 @@ const userSchema = new mongoose.Schema({
     toObject: {
         virtuals: true
     }
+});
+
+userSchema.pre(/^find/, function(next) {
+    this.find({ active: { $ne: false } });
+    next();
 });
 
 userSchema.pre('save', async function(next) {

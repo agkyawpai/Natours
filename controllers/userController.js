@@ -12,7 +12,7 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 exports.updateMe = catchAsync(async(req, res, next) => {
-    
+
     //1) If user posted passwords throw new error
     if(req.body.password || req.body.passwordConfirm) {
         return next(new AppError('This route is not for password updates. Please use /updateMyPassword.', 400));
@@ -33,6 +33,17 @@ exports.updateMe = catchAsync(async(req, res, next) => {
             user: updateUser
         }
     })
+});
+
+exports.deleteMe = catchAsync(async(req, res, next) => {
+    await User.findByIdAndUpdate(req.user.id, {
+        active: false
+    });
+
+    res.status(204).json({
+        status: 'success',
+        data: null
+    });
 });
 
 exports.createUser = (req, res) => {
