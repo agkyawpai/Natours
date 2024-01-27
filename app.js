@@ -20,6 +20,18 @@ app.use(express.json({ limit: '10kb' }));
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
+app.use(hpp({
+    whitelist: [
+        'duration',
+        'ratingsQuantity',
+        'ratingsAverage',
+        'maxGroupSize',
+        'difficulty',
+        'price'
+    ]
+})
+);
+
 // Data sanitization against XSS
 app.use(xss());
 
