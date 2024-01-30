@@ -54,25 +54,7 @@ exports.createUser = (req, res) => {
     });
 };
 
-exports.getAllUsers = catchAsync(async(req, res, next) => {
-    const users = await User.find();
-    
-    res.status(200).json({
-        status: 'success',  
-        results: users.length,
-        requestedAt: req.requestTime,
-        data: {
-            users,
-        }
-});
-});
-
-exports.getUser = (req, res) => {
-    res.status(500).json({
-        status: 'fail',  
-        data: "<This route is not defined yet.>"
-    });
-};
-
+exports.getAllUsers = factory.getAll(User);
+exports.getUser = factory.getOne(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
